@@ -43,7 +43,7 @@ public class Particle {
 	}
 	
 	public boolean lookForAPenny() {
-		double m = Math.random() * 10;
+		double m = Math.random() * (LUCK_LIMIT + 1);
 		if (m < luck) {
 			pennies++;
 			if (luck < LUCK_LIMIT) {
