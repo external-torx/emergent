@@ -10,34 +10,32 @@ import org.drools.builder.ResourceType;
 import org.drools.io.ResourceFactory;
 import org.drools.logger.KnowledgeRuntimeLogger;
 import org.drools.logger.KnowledgeRuntimeLoggerFactory;
-import org.drools.runtime.StatefulKnowledgeSession;
+import org.drools.runtime.StatelessKnowledgeSession;
 
 public class ParticleEngine {
 
 	private static final int NUM_PARTICLES = 10;
-	private static final int NUM_ITERATIONS = 5;
+	private static final int NUM_ITERATIONS = 15;
 	public static void main(String[] args) {
 		try {
             // load up the knowledge base
             KnowledgeBase kbase = readKnowledgeBase();
-            StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
+            StatelessKnowledgeSession ksession = kbase.newStatelessKnowledgeSession();
             KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newFileLogger(ksession, "test");
             
             Particle[] particles = new Particle[NUM_PARTICLES];
             for (int i = 0; i < NUM_PARTICLES; i++) {
             	particles[i] = new Particle("p" + i);
             	particles[i].setLuck(Math.floor((Math.max(i - (Math.random() * 5), 0))));
-            	ksession.insert(particles[i]);
+            	
             }
             
-            //note to self
-            //FOR LOOPS DON'T WORK FOR REPEATED RULE FIRING
-            //rules won't fire on objects whose state has not changed
-//            for (int i = 0; i < NUM_ITERATIONS; i++) {
-//            	ksession.fireAllRules();
-//            }
-            
-            ksession.fireAllRules();
+            for (int i = 0; i < NUM_ITERATIONS; i++) {
+            	for (Particle p : particles) {
+            		ksession.execute(p);
+            	}
+            	
+            }
             logger.close();
         } catch (Throwable t) {
             t.printStackTrace();
