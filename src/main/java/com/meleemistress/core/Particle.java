@@ -9,8 +9,13 @@ public class Particle {
 
 	private static final int LUCK_LIMIT = 10;
 	private String name;
+	
+	//see a penny
+	//pick it up
+	//all day long
+	//you'll have good luck
 	private int pennies;
-	private int luck;
+	private double luck;
 	
 	public Particle(String name) {
 		this.name = name;
@@ -34,11 +39,11 @@ public class Particle {
 		this.pennies = pennies;
 	}
 
-	public int getLuck() {
+	public double getLuck() {
 		return luck;
 	}
 
-	public void setLuck(int luck) {
+	public void setLuck(double luck) {
 		this.luck = luck;
 	}
 	

@@ -14,11 +14,8 @@ import org.drools.runtime.StatefulKnowledgeSession;
 
 public class ParticleEngine {
 
-	/**
-	 * @param args
-	 */
-	
 	private static final int NUM_PARTICLES = 10;
+	private static final int NUM_ITERATIONS = 5;
 	public static void main(String[] args) {
 		try {
             // load up the knowledge base
@@ -29,8 +26,16 @@ public class ParticleEngine {
             Particle[] particles = new Particle[NUM_PARTICLES];
             for (int i = 0; i < NUM_PARTICLES; i++) {
             	particles[i] = new Particle("p" + i);
+            	particles[i].setLuck(Math.floor((Math.max(i - (Math.random() * 5), 0))));
             	ksession.insert(particles[i]);
             }
+            
+            //note to self
+            //FOR LOOPS DON'T WORK FOR REPEATED RULE FIRING
+            //rules won't fire on objects whose state has not changed
+//            for (int i = 0; i < NUM_ITERATIONS; i++) {
+//            	ksession.fireAllRules();
+//            }
             
             ksession.fireAllRules();
             logger.close();
