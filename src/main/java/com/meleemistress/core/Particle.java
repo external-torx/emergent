@@ -7,12 +7,15 @@ package com.meleemistress.core;
  */
 public class Particle {
 
+	private static final int LUCK_LIMIT = 10;
 	private String name;
-	private boolean foundSomething;
+	private int pennies;
+	private int luck;
 	
 	public Particle(String name) {
 		this.name = name;
-		foundSomething = false;
+		this.luck = 1;
+		this.pennies = 0;
 	}
 
 	public String getName() {
@@ -23,12 +26,31 @@ public class Particle {
 		this.name = name;
 	}
 
-	public boolean isFoundSomething() {
-		return foundSomething;
+	public int getPennies() {
+		return pennies;
 	}
 
-	public void setFoundSomething(boolean foundSomething) {
-		this.foundSomething = foundSomething;
+	public void setPennies(int pennies) {
+		this.pennies = pennies;
+	}
+
+	public int getLuck() {
+		return luck;
+	}
+
+	public void setLuck(int luck) {
+		this.luck = luck;
+	}
+	
+	public boolean lookForAPenny() {
+		double m = Math.random() * 10;
+		if (m < luck) {
+			pennies++;
+			luck = luck < LUCK_LIMIT ? luck++ : luck;
+			return true;
+		}
+		
+		return false;
 	}
 	
 	

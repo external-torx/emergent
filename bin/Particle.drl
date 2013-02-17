@@ -17,7 +17,10 @@ rule "When a particle is found, print its name"
     when
         $p : Particle()
     then
-        System.out.println("Found a particle: " + $p.getName());
+        System.out.println($p.getName() + ": pennies " + $p.getPennies() + " luck: " + $p.getLuck());
+        if ($p.lookForAPenny()) {
+            update($p);
+        }
 end
 
 

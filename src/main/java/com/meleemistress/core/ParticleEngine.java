@@ -11,13 +11,14 @@ import org.drools.io.ResourceFactory;
 import org.drools.logger.KnowledgeRuntimeLogger;
 import org.drools.logger.KnowledgeRuntimeLoggerFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
-import org.drools.runtime.rule.FactHandle;
 
 public class ParticleEngine {
 
 	/**
 	 * @param args
 	 */
+	
+	private static final int NUM_PARTICLES = 10;
 	public static void main(String[] args) {
 		try {
             // load up the knowledge base
@@ -25,15 +26,13 @@ public class ParticleEngine {
             StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
             KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newFileLogger(ksession, "test");
             
-            Particle p = new Particle("Sam");
-            FactHandle pfh = ksession.insert(p);
-
-            for (int i = 0; i < 10; i ++) {
-            	p.setName(p.getName() + i);
-            	ksession.update(pfh, p);
-            
-            	ksession.fireAllRules();
+            Particle[] particles = new Particle[NUM_PARTICLES];
+            for (int i = 0; i < NUM_PARTICLES; i++) {
+            	particles[i] = new Particle("p" + i);
+            	ksession.insert(particles[i]);
             }
+            
+            ksession.fireAllRules();
             logger.close();
         } catch (Throwable t) {
             t.printStackTrace();
