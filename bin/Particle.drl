@@ -1,0 +1,30 @@
+//created on: Feb 16, 2013
+package Particle
+
+import com.meleemistress.core.Particle;
+
+//list any import classes here.
+
+
+
+//declare any global variables here
+
+
+
+
+rule "Your First Rule"
+
+    when
+        $p : Particle()
+    then
+        System.out.println("Found a particle: " + $p.getName());
+end
+
+rule "Your Second Rule"
+    //include attributes such as "salience" here...
+    when
+        //conditions
+    then
+        //actions
+
+end
