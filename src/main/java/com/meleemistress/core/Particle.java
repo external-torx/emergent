@@ -46,7 +46,9 @@ public class Particle {
 		double m = Math.random() * 10;
 		if (m < luck) {
 			pennies++;
-			luck = luck < LUCK_LIMIT ? luck++ : luck;
+			if (luck < LUCK_LIMIT) {
+				luck++;
+			}
 			return true;
 		}
 		
