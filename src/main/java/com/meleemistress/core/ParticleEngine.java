@@ -11,6 +11,7 @@ import org.drools.io.ResourceFactory;
 import org.drools.logger.KnowledgeRuntimeLogger;
 import org.drools.logger.KnowledgeRuntimeLoggerFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
+import org.drools.runtime.rule.FactHandle;
 
 public class ParticleEngine {
 
@@ -25,9 +26,14 @@ public class ParticleEngine {
             KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newFileLogger(ksession, "test");
             
             Particle p = new Particle("Sam");
-            ksession.insert(p);
-            //ksession.insert(message);
-            ksession.fireAllRules();
+            FactHandle pfh = ksession.insert(p);
+
+            for (int i = 0; i < 10; i ++) {
+            	p.setName(p.getName() + i);
+            	ksession.update(pfh, p);
+            
+            	ksession.fireAllRules();
+            }
             logger.close();
         } catch (Throwable t) {
             t.printStackTrace();

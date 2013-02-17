@@ -1,43 +1,237 @@
 <object-stream>
 <org.drools.audit.event.ActivationLogEvent>
   <type>4</type>
-  <activationId>Your Second Rule [0]</activationId>
-  <rule>Your Second Rule</rule>
-  <declarations></declarations>
-</org.drools.audit.event.ActivationLogEvent>
-<org.drools.audit.event.ActivationLogEvent>
-  <type>4</type>
-  <activationId>Your First Rule [1]</activationId>
-  <rule>Your First Rule</rule>
-  <declarations>$p=com.meleemistress.core.Particle@3d80023a(1)</declarations>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
 </org.drools.audit.event.ActivationLogEvent>
 <org.drools.audit.event.ObjectLogEvent>
   <type>1</type>
   <factId>1</factId>
-  <objectToString>com.meleemistress.core.Particle@3d80023a</objectToString>
+  <objectToString>com.meleemistress.core.Particle@4d38e3ae</objectToString>
+</org.drools.audit.event.ObjectLogEvent>
+<org.drools.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>1</factId>
+  <objectToString>com.meleemistress.core.Particle@4d38e3ae</objectToString>
 </org.drools.audit.event.ObjectLogEvent>
 <org.drools.audit.event.ActivationLogEvent>
   <type>6</type>
-  <activationId>Your First Rule [1]</activationId>
-  <rule>Your First Rule</rule>
-  <declarations>$p=com.meleemistress.core.Particle@3d80023a(1)</declarations>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
 </org.drools.audit.event.ActivationLogEvent>
 <org.drools.audit.event.ActivationLogEvent>
   <type>7</type>
-  <activationId>Your First Rule [1]</activationId>
-  <rule>Your First Rule</rule>
-  <declarations>$p=com.meleemistress.core.Particle@3d80023a(1)</declarations>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
 </org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>1</factId>
+  <objectToString>com.meleemistress.core.Particle@4d38e3ae</objectToString>
+</org.drools.audit.event.ObjectLogEvent>
 <org.drools.audit.event.ActivationLogEvent>
   <type>6</type>
-  <activationId>Your Second Rule [0]</activationId>
-  <rule>Your Second Rule</rule>
-  <declarations></declarations>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
 </org.drools.audit.event.ActivationLogEvent>
 <org.drools.audit.event.ActivationLogEvent>
   <type>7</type>
-  <activationId>Your Second Rule [0]</activationId>
-  <rule>Your Second Rule</rule>
-  <declarations></declarations>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>1</factId>
+  <objectToString>com.meleemistress.core.Particle@4d38e3ae</objectToString>
+</org.drools.audit.event.ObjectLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>1</factId>
+  <objectToString>com.meleemistress.core.Particle@4d38e3ae</objectToString>
+</org.drools.audit.event.ObjectLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>1</factId>
+  <objectToString>com.meleemistress.core.Particle@4d38e3ae</objectToString>
+</org.drools.audit.event.ObjectLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>1</factId>
+  <objectToString>com.meleemistress.core.Particle@4d38e3ae</objectToString>
+</org.drools.audit.event.ObjectLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>1</factId>
+  <objectToString>com.meleemistress.core.Particle@4d38e3ae</objectToString>
+</org.drools.audit.event.ObjectLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>1</factId>
+  <objectToString>com.meleemistress.core.Particle@4d38e3ae</objectToString>
+</org.drools.audit.event.ObjectLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>1</factId>
+  <objectToString>com.meleemistress.core.Particle@4d38e3ae</objectToString>
+</org.drools.audit.event.ObjectLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>4</type>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ObjectLogEvent>
+  <type>2</type>
+  <factId>1</factId>
+  <objectToString>com.meleemistress.core.Particle@4d38e3ae</objectToString>
+</org.drools.audit.event.ObjectLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>6</type>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
+</org.drools.audit.event.ActivationLogEvent>
+<org.drools.audit.event.ActivationLogEvent>
+  <type>7</type>
+  <activationId>When a particle is found, print its name [1]</activationId>
+  <rule>When a particle is found, print its name</rule>
+  <declarations>$p=com.meleemistress.core.Particle@4d38e3ae(1)</declarations>
 </org.drools.audit.event.ActivationLogEvent>
 </object-stream>

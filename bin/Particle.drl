@@ -12,7 +12,7 @@ import com.meleemistress.core.Particle;
 
 
 
-rule "Your First Rule"
+rule "When a particle is found, print its name"
 
     when
         $p : Particle()
@@ -20,11 +20,4 @@ rule "Your First Rule"
         System.out.println("Found a particle: " + $p.getName());
 end
 
-rule "Your Second Rule"
-    //include attributes such as "salience" here...
-    when
-        //conditions
-    then
-        //actions
 
-end
