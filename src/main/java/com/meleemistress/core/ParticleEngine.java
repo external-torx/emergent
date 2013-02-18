@@ -23,7 +23,7 @@ public class ParticleEngine extends PApplet {
 	private static final int NUM_PARTICLES = 10;
 	
 	private static final int RADIUS = 5;
-	private static final int DIMENSION = 400;
+	private static final int DIMENSION = 800;
 	
 	private  KnowledgeBase kbase;
 	private StatelessKnowledgeSession ksession;
@@ -32,7 +32,7 @@ public class ParticleEngine extends PApplet {
 	
 	public void setup() {
 		size(DIMENSION, DIMENSION);
-		background(0);
+		background(255);
 		try {
             // load up the knowledge base
             kbase = readKnowledgeBase();
@@ -42,7 +42,7 @@ public class ParticleEngine extends PApplet {
             particles = new Particle[NUM_PARTICLES];
             for (int i = 0; i < NUM_PARTICLES; i++) {
             	particles[i] = new Particle("p" + i);
-            	particles[i].setLuck((int)Math.floor((Math.max(i - (Math.random() * 5), 0))));
+            	particles[i].setLuck((int)Math.ceil((Math.max(i - (Math.random() * 5), 0))));
             	
             }
             
@@ -59,7 +59,8 @@ public class ParticleEngine extends PApplet {
 	public void mouseClicked() {
 		for (int i=0; i< particles.length; i++) {
     		ksession.execute(particles[i]);
-    		ellipse(i * (DIMENSION / particles.length), DIMENSION / 2, RADIUS * particles[i].getLuck(), RADIUS * particles[i].getLuck());
+    		fill(particles[i].getLuck() * 20, particles[i].getLuck() * 20, 0);
+    		ellipse(i * (DIMENSION / particles.length), DIMENSION / 2, RADIUS * particles[i].getPennies(), RADIUS * particles[i].getPennies());
     	}
 	}
 
