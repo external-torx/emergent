@@ -15,7 +15,7 @@ public class Particle {
 	//all day long
 	//you'll have good luck
 	private int pennies;
-	private double luck;
+	private int luck;
 	
 	public Particle(String name) {
 		this.name = name;
@@ -39,16 +39,16 @@ public class Particle {
 		this.pennies = pennies;
 	}
 
-	public double getLuck() {
+	public int getLuck() {
 		return luck;
 	}
 
-	public void setLuck(double luck) {
+	public void setLuck(int luck) {
 		this.luck = luck;
 	}
 	
 	public boolean lookForAPenny() {
-		double m = Math.random() * (LUCK_LIMIT + 1);
+		int m = (int) Math.floor(Math.random() * (LUCK_LIMIT + 1));
 		if (m < luck) {
 			pennies++;
 			if (luck < LUCK_LIMIT) {
