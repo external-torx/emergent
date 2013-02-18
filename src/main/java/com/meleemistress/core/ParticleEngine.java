@@ -12,11 +12,20 @@ import org.drools.logger.KnowledgeRuntimeLogger;
 import org.drools.logger.KnowledgeRuntimeLoggerFactory;
 import org.drools.runtime.StatelessKnowledgeSession;
 
-public class ParticleEngine {
+import processing.core.*;
 
+public class ParticleEngine extends PApplet {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static final int NUM_PARTICLES = 10;
 	private static final int NUM_ITERATIONS = 15;
-	public static void main(String[] args) {
+	
+	public void setup() {
+		size(200,200);
+		background(0);
 		try {
             // load up the knowledge base
             KnowledgeBase kbase = readKnowledgeBase();
@@ -40,8 +49,15 @@ public class ParticleEngine {
         } catch (Throwable t) {
             t.printStackTrace();
         }
-
 	}
+	
+	public void draw() {
+		stroke(255);
+		if (mousePressed) {
+			line(mouseX, mouseY, pmouseX, pmouseY);
+		}
+	}
+
 	
 	private static KnowledgeBase readKnowledgeBase() throws Exception {
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
