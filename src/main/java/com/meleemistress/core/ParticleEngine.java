@@ -59,6 +59,7 @@ public class ParticleEngine extends PApplet {
 		//need to redraw the background every time if we don't want trailing
         background(255);
         for (int i = 0; i < NUM_PARTICLES; i++) {
+        	ksession.execute(particles[i]);
         	fill(particles[i].getLuck() * 20, particles[i].getLuck() * 20, 0);
     		ellipse(particles[i].getX(), particles[i].getY(), RADIUS, RADIUS );
         }
