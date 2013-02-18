@@ -29,10 +29,12 @@ public class ParticleEngine extends PApplet {
 	private StatelessKnowledgeSession ksession;
 	private KnowledgeRuntimeLogger logger;
 	private Particle[] particles;
+	private PImage img;
 	
 	public void setup() {
 		size(DIMENSION, DIMENSION);
 		background(255);
+		img = loadImage("Candlesticks.jpg");
 		try {
             // load up the knowledge base
             kbase = readKnowledgeBase();
@@ -52,7 +54,7 @@ public class ParticleEngine extends PApplet {
 	}
 	
 	public void draw() {
-        
+        image(img, 0, 0);
 
 	}
 	
