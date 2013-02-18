@@ -56,7 +56,8 @@ public class ParticleEngine extends PApplet {
 	}
 	
 	public void draw() {
-        fill(255);
+		//need to redraw the background every time if we don't want trailing
+        background(255);
         for (int i = 0; i < NUM_PARTICLES; i++) {
         	fill(particles[i].getLuck() * 20, particles[i].getLuck() * 20, 0);
     		ellipse(particles[i].getX(), particles[i].getY(), RADIUS, RADIUS );
@@ -67,8 +68,8 @@ public class ParticleEngine extends PApplet {
 	public void mouseClicked() {
 		for (int i=0; i< particles.length; i++) {
     		ksession.execute(particles[i]);
-    		
     	}
+		redraw();
 	}
 
 	
