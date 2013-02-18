@@ -9,6 +9,8 @@ public class Particle {
 
 	private static final int LUCK_LIMIT = 10;
 	private String name;
+	private int x;
+	private int y;
 	
 	//see a penny
 	//pick it up
@@ -47,6 +49,22 @@ public class Particle {
 		this.luck = luck;
 	}
 	
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
 	public boolean lookForAPenny() {
 		int m = (int) Math.floor(Math.random() * (LUCK_LIMIT + 1));
 		if (m < luck) {

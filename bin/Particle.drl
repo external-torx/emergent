@@ -20,11 +20,13 @@ rule "When a particle is found, print its name"
         System.out.println($p.getName() + ": pennies " + $p.getPennies() + " luck: " + $p.getLuck());
         //calling update in a rule causes the rules to be reevaluated. This messes with the
         //concept of state iterations
-        $p.lookForAPenny();
+ //       $p.lookForAPenny();
 /*        if ($p.lookForAPenny()) {
             update($p);
         }
    */     
+        $p.setX($p.getX() + 5);
+        
 end
 
 
