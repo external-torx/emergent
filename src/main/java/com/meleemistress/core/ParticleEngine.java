@@ -21,41 +21,45 @@ public class ParticleEngine extends PApplet {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static final int NUM_PARTICLES = 10;
-	private static final int NUM_ITERATIONS = 15;
+	
+	private static final int RADIUS = 5;
+	
+	private  KnowledgeBase kbase;
+	private StatelessKnowledgeSession ksession;
+	private KnowledgeRuntimeLogger logger;
+	private Particle[] particles;
 	
 	public void setup() {
-		size(200,200);
+		size(400,400);
 		background(0);
 		try {
             // load up the knowledge base
-            KnowledgeBase kbase = readKnowledgeBase();
-            StatelessKnowledgeSession ksession = kbase.newStatelessKnowledgeSession();
-            KnowledgeRuntimeLogger logger = KnowledgeRuntimeLoggerFactory.newFileLogger(ksession, "test");
+            kbase = readKnowledgeBase();
+            ksession = kbase.newStatelessKnowledgeSession();
+            logger = KnowledgeRuntimeLoggerFactory.newFileLogger(ksession, "test");
             
-            Particle[] particles = new Particle[NUM_PARTICLES];
+            particles = new Particle[NUM_PARTICLES];
             for (int i = 0; i < NUM_PARTICLES; i++) {
             	particles[i] = new Particle("p" + i);
             	particles[i].setLuck(Math.floor((Math.max(i - (Math.random() * 5), 0))));
             	
             }
             
-            for (int i = 0; i < NUM_ITERATIONS; i++) {
-            	for (Particle p : particles) {
-            		ksession.execute(p);
-            	}
-            	
-            }
-            logger.close();
         } catch (Throwable t) {
             t.printStackTrace();
         }
 	}
 	
 	public void draw() {
-		stroke(255);
-		if (mousePressed) {
-			line(mouseX, mouseY, pmouseX, pmouseY);
-		}
+        
+
+	}
+	
+	public void mouseClicked() {
+		for (int i=0; i< particles.length; i++) {
+    		ksession.execute(particles[i]);
+    		ellipse(RADIUS*i, RADIUS * i, RADIUS, RADIUS);
+    	}
 	}
 
 	
