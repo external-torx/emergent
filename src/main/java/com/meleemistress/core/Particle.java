@@ -13,12 +13,10 @@ public class Particle {
 	
 	//x,y positions of object. Can be between 0 and ParticleEngine.DIMENSION. Any value
 	//outside that range will put the object off screen
-	private double x;
-	private double y;
+	protected double x;
+	protected double y;
 	
-	//x,y velocities
-	private double xvel;
-	private double yvel;
+	
 	
 	
 	public Particle(String name) {
@@ -50,21 +48,7 @@ public class Particle {
 		this.y = y;
 	}
 
-	public double getXvel() {
-		return xvel;
-	}
 
-	public void setXvel(double xvel) {
-		this.xvel = xvel;
-	}
-
-	public double getYvel() {
-		return yvel;
-	}
-
-	public void setYvel(double yvel) {
-		this.yvel = yvel;
-	}
 
 	public int getRadius() {
 		return radius;
@@ -75,18 +59,6 @@ public class Particle {
 	}
 
 	
-	public void generateStartingPositionAndVelocity() {
-		
-		x = Math.random() * ParticleEngine.DIMENSION;
-		y = Math.random() * ParticleEngine.DIMENSION;
-		xvel = Math.random() * 5;
-		yvel = Math.random() * 5;
-		radius = 10;
-	}
-	
-	public void updatePosition() {
-		//bounce off the sides of the viewing window
-		x = xvel > 0 ? Math.min(x + xvel, ParticleEngine.DIMENSION) : Math.max(0, x + xvel);
-		y = yvel > 0 ? Math.min(y + yvel, ParticleEngine.DIMENSION) : Math.max(0, y + yvel);
-	}
+
+
 }

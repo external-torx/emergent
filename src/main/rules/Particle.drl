@@ -2,6 +2,7 @@
 package Particle
 
 import com.meleemistress.core.Particle;
+import com.meleemistress.core.MovingParticle;
 import com.meleemistress.core.ParticleEngine;
 
 
@@ -14,7 +15,7 @@ import com.meleemistress.core.ParticleEngine;
 //initialization: set position, velocity
 rule "initialize the particle"
     when 
-        p : Particle(xvel == 0 && yvel == 0)
+        p : MovingParticle(xvel == 0 && yvel == 0)
     then
         p.generateStartingPositionAndVelocity();
 end
@@ -26,7 +27,7 @@ end
 rule "bounce off a side wall"
     salience 1  //execute this before updating position
     when
-        p : Particle(x == ParticleEngine.DIMENSION || x == 0)
+        p : MovingParticle(x == ParticleEngine.DIMENSION || x == 0)
     then
         //if we've hit the boundary of the viewing window, invert the x velocity
         p.setXvel(-p.getXvel());
@@ -35,7 +36,7 @@ end
 rule "bounce off the floor or ceiling"
     salience 1 //execute this before updating position
     when
-        p : Particle(y == ParticleEngine.DIMENSION || y == 0)
+        p : MovingParticle(y == ParticleEngine.DIMENSION || y == 0)
     then
         //if we've hit the boundary of the window, invert the y velocity
         p.setYvel(-p.getYvel());
@@ -44,7 +45,7 @@ end
 rule "update particle position"
     when
         //all positions get updated, all the time
-        p : Particle()
+        p : MovingParticle()
     then
         p.updatePosition();
 end

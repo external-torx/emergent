@@ -27,7 +27,10 @@ public class ParticleEngine extends PApplet {
 	private  KnowledgeBase kbase;
 	private StatelessKnowledgeSession ksession;
 	private KnowledgeRuntimeLogger klogger;
-	private Particle[] particles;
+	private Particle[][] bgParticles;
+	private MovingParticle[] movingParticles;
+	private static final int rad = 5;
+	private static final int partsPerSide = DIMENSION/rad;
 	
 	private PImage img;
 	
@@ -41,10 +44,20 @@ public class ParticleEngine extends PApplet {
             ksession = kbase.newStatelessKnowledgeSession();
             klogger = KnowledgeRuntimeLoggerFactory.newFileLogger(ksession, "test");
             
-            particles = new Particle[NUM_PARTICLES];
+            movingParticles = new MovingParticle[NUM_PARTICLES];
             for (int i = 0; i < NUM_PARTICLES; i++) {
-            	particles[i] = new Particle("p" + i);
+            	movingParticles[i] = new MovingParticle("p" + i);
             	
+            }
+            
+            
+            bgParticles = new Particle[partsPerSide][partsPerSide];
+            for (int i = 0; i < partsPerSide; i++) {
+            	for (int j = 0; j < partsPerSide; j++) {
+            		bgParticles[i][j] = new Particle("p" + i + j);
+            		bgParticles[i][j].setX(i * rad);
+            		bgParticles[i][j].setY(j * rad);
+            	}
             }
             
         } catch (Throwable t) {
@@ -55,10 +68,17 @@ public class ParticleEngine extends PApplet {
 	public void draw() {
 		//need to redraw the background every time if we don't want trailing
         background(img);
+        noStroke();
+        fill(255);
+        for (int i = 0; i < partsPerSide; i++) {
+        	for (int j = 0; j < partsPerSide; j++){
+        		rect(bgParticles[i][j].getX(), bgParticles[i][j].getY(), rad, rad);
+        	}
+        }
         for (int i = 0; i < NUM_PARTICLES; i++) {
-        	ksession.execute(particles[i]);
+        	ksession.execute(movingParticles[i]);
         	fill(100, 0, 100);
-    		ellipse(particles[i].getX(), particles[i].getY(), particles[i].getRadius(), particles[i].getRadius());
+    		ellipse(movingParticles[i].getX(), movingParticles[i].getY(), movingParticles[i].getRadius(), movingParticles[i].getRadius());
         }
 
 	}
