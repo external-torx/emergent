@@ -23,7 +23,7 @@ public class ParticleEngine extends PApplet {
 	private static final int NUM_PARTICLES = 10;
 	
 	private static final int RADIUS = 20;
-	private static final int DIMENSION = 800;
+	public static final int DIMENSION = 800;
 	
 	private  KnowledgeBase kbase;
 	private StatelessKnowledgeSession ksession;
@@ -44,9 +44,6 @@ public class ParticleEngine extends PApplet {
             particles = new Particle[NUM_PARTICLES];
             for (int i = 0; i < NUM_PARTICLES; i++) {
             	particles[i] = new Particle("p" + i);
-            	particles[i].setLuck((int)Math.ceil((Math.max(i - (Math.random() * 5), 0))));
-            	particles[i].setX(0);
-            	particles[i].setY((DIMENSION / RADIUS) * i);
             	
             }
             
@@ -60,8 +57,8 @@ public class ParticleEngine extends PApplet {
         background(255);
         for (int i = 0; i < NUM_PARTICLES; i++) {
         	ksession.execute(particles[i]);
-        	fill(particles[i].getLuck() * 20, particles[i].getLuck() * 20, 0);
-    		ellipse(particles[i].getX(), particles[i].getY(), RADIUS * particles[i].getPennies(), RADIUS * particles[i].getPennies() );
+        	fill(100, 0, 100);
+    		ellipse(particles[i].getX(), particles[i].getY(), particles[i].getRadius(), particles[i].getRadius());
         }
 
 	}

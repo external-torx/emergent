@@ -2,6 +2,7 @@
 package Particle
 
 import com.meleemistress.core.Particle;
+import com.meleemistress.core.ParticleEngine;
 
 //list any import classes here.
 
@@ -11,8 +12,30 @@ import com.meleemistress.core.Particle;
 
 
 
+//initialization: set position, velocity
 
-rule "When a particle is found, print its name"
+rule "initialize the particle"
+    when 
+        p : Particle(xvel == 0 && yvel == 0)
+    then
+        System.out.println("init");
+        p.generateStartingPositionAndVelocity();
+end
+
+
+
+//movement: update position
+
+rule "update particle position"
+    when
+        p : Particle(x != null)
+    then
+        System.out.println("update");
+        p.updatePosition();
+end
+
+
+/*rule "When a particle is found, print its name"
 
     when
         $p : Particle()
@@ -24,6 +47,6 @@ rule "When a particle is found, print its name"
     
         $p.setX($p.getX() + 5);
         
-end
+end */
 
 
