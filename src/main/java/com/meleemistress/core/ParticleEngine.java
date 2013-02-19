@@ -29,10 +29,12 @@ public class ParticleEngine extends PApplet {
 	private KnowledgeRuntimeLogger klogger;
 	private Particle[] particles;
 	
+	private PImage img;
+	
 	public void setup() {
 		size(DIMENSION, DIMENSION);
 		background(255);
-		//img = loadImage("Candlesticks.jpg");
+		img = loadImage("particle_background.png");
 		try {
             // load up the knowledge base
             kbase = readKnowledgeBase();
@@ -52,7 +54,7 @@ public class ParticleEngine extends PApplet {
 	
 	public void draw() {
 		//need to redraw the background every time if we don't want trailing
-        background(255);
+        background(img);
         for (int i = 0; i < NUM_PARTICLES; i++) {
         	ksession.execute(particles[i]);
         	fill(100, 0, 100);
