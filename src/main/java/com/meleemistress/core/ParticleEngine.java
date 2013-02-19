@@ -22,14 +22,12 @@ public class ParticleEngine extends PApplet {
 	private static final long serialVersionUID = 1L;
 	private static final int NUM_PARTICLES = 10;
 	
-	private static final int RADIUS = 20;
 	public static final int DIMENSION = 800;
 	
 	private  KnowledgeBase kbase;
 	private StatelessKnowledgeSession ksession;
-	private KnowledgeRuntimeLogger logger;
+	private KnowledgeRuntimeLogger klogger;
 	private Particle[] particles;
-	private PImage img;
 	
 	public void setup() {
 		size(DIMENSION, DIMENSION);
@@ -39,7 +37,7 @@ public class ParticleEngine extends PApplet {
             // load up the knowledge base
             kbase = readKnowledgeBase();
             ksession = kbase.newStatelessKnowledgeSession();
-            logger = KnowledgeRuntimeLoggerFactory.newFileLogger(ksession, "test");
+            klogger = KnowledgeRuntimeLoggerFactory.newFileLogger(ksession, "test");
             
             particles = new Particle[NUM_PARTICLES];
             for (int i = 0; i < NUM_PARTICLES; i++) {
@@ -63,12 +61,6 @@ public class ParticleEngine extends PApplet {
 
 	}
 	
-	public void mouseClicked() {
-		for (int i=0; i< particles.length; i++) {
-    		ksession.execute(particles[i]);
-    	}
-		redraw();
-	}
 
 	
 	private static KnowledgeBase readKnowledgeBase() throws Exception {
