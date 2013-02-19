@@ -79,13 +79,14 @@ public class Particle {
 		
 		x = Math.random() * ParticleEngine.DIMENSION;
 		y = Math.random() * ParticleEngine.DIMENSION;
-		xvel = 1;
-		yvel = 1;
+		xvel = Math.random() * 5;
+		yvel = Math.random() * 5;
 		radius = 10;
 	}
 	
 	public void updatePosition() {
-		x = Math.min(x + xvel, ParticleEngine.DIMENSION);
-		y = Math.min(y + yvel, ParticleEngine.DIMENSION);
+		//bounce off the sides of the viewing window
+		x = xvel > 0 ? Math.min(x + xvel, ParticleEngine.DIMENSION) : Math.max(0, x + xvel);
+		y = yvel > 0 ? Math.min(y + yvel, ParticleEngine.DIMENSION) : Math.max(0, y + yvel);
 	}
 }
