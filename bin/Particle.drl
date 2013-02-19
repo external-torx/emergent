@@ -4,6 +4,7 @@ package Particle
 import com.meleemistress.core.Particle;
 import com.meleemistress.core.MovingParticle;
 import com.meleemistress.core.ParticleEngine;
+import com.meleemistress.core.Particle.ParticleType;
 
 
 
@@ -50,6 +51,15 @@ rule "update particle position"
         p.updatePosition();
 end
 
+
+//this won't work because we'd need to fire a ksession with m and p
+rule "detect collisions"
+    when
+        m: MovingParticle()
+        p: Particle(Math.abs(x - m.x) < 5, Math.abs(y - m.y) < 5, type == ParticleType.STILL)
+    then
+        p.remove();
+end
 
 
 

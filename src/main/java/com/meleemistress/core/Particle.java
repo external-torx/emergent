@@ -16,11 +16,12 @@ public class Particle {
 	protected double x;
 	protected double y;
 	
-	
+	protected ParticleType type;
 	
 	
 	public Particle(String name) {
 		this.name = name;
+		this.type = ParticleType.STILL;
 	}
 
 	public String getName() {
@@ -58,7 +59,20 @@ public class Particle {
 		this.radius = radius;
 	}
 
+	//hack for now to get particle off screen. Really, this should 
+	//remove the particle from memory entirely
+	public void remove() {
+		this.x = -1;
+		this.y = -1;
+	}
+	
+	public ParticleType getType() {
+		return this.type;
+	}
 	
 
+	public enum ParticleType {
+		MOVING, STILL
+	}
 
 }

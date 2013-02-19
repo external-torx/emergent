@@ -12,6 +12,8 @@ import org.drools.logger.KnowledgeRuntimeLogger;
 import org.drools.logger.KnowledgeRuntimeLoggerFactory;
 import org.drools.runtime.StatelessKnowledgeSession;
 
+import com.meleemistress.core.Particle.ParticleType;
+
 import processing.core.*;
 
 public class ParticleEngine extends PApplet {
@@ -72,7 +74,9 @@ public class ParticleEngine extends PApplet {
         fill(255);
         for (int i = 0; i < partsPerSide; i++) {
         	for (int j = 0; j < partsPerSide; j++){
+        		
         		rect(bgParticles[i][j].getX(), bgParticles[i][j].getY(), rad, rad);
+        		ksession.execute(bgParticles[i][j]);
         	}
         }
         for (int i = 0; i < NUM_PARTICLES; i++) {
@@ -84,6 +88,15 @@ public class ParticleEngine extends PApplet {
 	}
 	
 
+	public void remove(Particle p) {
+		System.out.println("removing...");
+		if (p.getType() == ParticleType.STILL) {
+			int i = (int) (p.getX() / rad);
+			int j = (int) (p.getY() / rad);
+			bgParticles[i][j] = null;
+		}
+		
+	}
 	
 	private static KnowledgeBase readKnowledgeBase() throws Exception {
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
@@ -99,5 +112,6 @@ public class ParticleEngine extends PApplet {
         kbase.addKnowledgePackages(kbuilder.getKnowledgePackages());
         return kbase;
     }
+
 
 }
