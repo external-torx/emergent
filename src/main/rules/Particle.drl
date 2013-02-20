@@ -5,6 +5,7 @@ import com.meleemistress.core.Particle;
 import com.meleemistress.core.MovingParticle;
 import com.meleemistress.core.ParticleEngine;
 import com.meleemistress.core.Particle.ParticleType;
+import com.meleemistress.core.Background;
 
 
 
@@ -47,18 +48,20 @@ rule "update particle position"
     when
         //all positions get updated, all the time
         p : MovingParticle()
+        b : Background()
     then
         p.updatePosition();
+        b.removeCollidingParticles(p.getX(), p.getY());
 end
 
 
-//this won't work because we'd need to fire a ksession with m and p
+
 rule "detect collisions"
     when
         m: MovingParticle()
         p: Particle(Math.abs(x - m.x) < 5, Math.abs(y - m.y) < 5, type == ParticleType.STILL)
     then
-        p.remove();
+       // p.remove();
 end
 
 

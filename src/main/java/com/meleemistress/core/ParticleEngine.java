@@ -1,5 +1,9 @@
 package com.meleemistress.core;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedList;
+
 import org.drools.KnowledgeBase;
 import org.drools.KnowledgeBaseFactory;
 import org.drools.builder.KnowledgeBuilder;
@@ -12,9 +16,8 @@ import org.drools.logger.KnowledgeRuntimeLogger;
 import org.drools.logger.KnowledgeRuntimeLoggerFactory;
 import org.drools.runtime.StatelessKnowledgeSession;
 
-import com.meleemistress.core.Particle.ParticleType;
-
-import processing.core.*;
+import processing.core.PApplet;
+import processing.core.PImage;
 
 public class ParticleEngine extends PApplet {
 
@@ -29,12 +32,13 @@ public class ParticleEngine extends PApplet {
 	private  KnowledgeBase kbase;
 	private StatelessKnowledgeSession ksession;
 	private KnowledgeRuntimeLogger klogger;
-	private Particle[][] bgParticles;
-	private MovingParticle[] movingParticles;
-	private static final int rad = 5;
+	private ArrayList<MovingParticle> movingParticles;
+	static final int rad = 5;
 	private static final int partsPerSide = DIMENSION/rad;
 	
 	private PImage img;
+	
+	private Background background;
 	
 	public void setup() {
 		size(DIMENSION, DIMENSION);
@@ -46,21 +50,14 @@ public class ParticleEngine extends PApplet {
             ksession = kbase.newStatelessKnowledgeSession();
             klogger = KnowledgeRuntimeLoggerFactory.newFileLogger(ksession, "test");
             
-            movingParticles = new MovingParticle[NUM_PARTICLES];
+            movingParticles = new ArrayList<MovingParticle>(NUM_PARTICLES);
             for (int i = 0; i < NUM_PARTICLES; i++) {
-            	movingParticles[i] = new MovingParticle("p" + i);
+            	movingParticles.add(i, new MovingParticle("p" + i));
             	
             }
             
             
-            bgParticles = new Particle[partsPerSide][partsPerSide];
-            for (int i = 0; i < partsPerSide; i++) {
-            	for (int j = 0; j < partsPerSide; j++) {
-            		bgParticles[i][j] = new Particle("p" + i + j);
-            		bgParticles[i][j].setX(i * rad);
-            		bgParticles[i][j].setY(j * rad);
-            	}
-            }
+            background = new Background(DIMENSION/rad, DIMENSION/rad, rad);
             
         } catch (Throwable t) {
             t.printStackTrace();
@@ -72,31 +69,26 @@ public class ParticleEngine extends PApplet {
         background(img);
         noStroke();
         fill(255);
-        for (int i = 0; i < partsPerSide; i++) {
-        	for (int j = 0; j < partsPerSide; j++){
-        		
-        		rect(bgParticles[i][j].getX(), bgParticles[i][j].getY(), rad, rad);
-        		ksession.execute(bgParticles[i][j]);
+        Collection<Object> stuff = new LinkedList<Object>();
+        stuff.addAll(movingParticles);
+        stuff.add(background);
+        ksession.execute(stuff);
+        for (Particle[] ps : background.getParticles()) {
+        	for (Particle p : ps) {
+        		if (p != null) {
+        			rect(p.getX(), p.getY(), p.getRadius(), p.getRadius());
+        		}
         	}
         }
+        
         for (int i = 0; i < NUM_PARTICLES; i++) {
-        	ksession.execute(movingParticles[i]);
+        	MovingParticle p = movingParticles.get(i);
         	fill(100, 0, 100);
-    		ellipse(movingParticles[i].getX(), movingParticles[i].getY(), movingParticles[i].getRadius(), movingParticles[i].getRadius());
+    		ellipse(p.getX(), p.getY(), p.getRadius(), p.getRadius());
         }
 
 	}
 	
-
-	public void remove(Particle p) {
-		System.out.println("removing...");
-		if (p.getType() == ParticleType.STILL) {
-			int i = (int) (p.getX() / rad);
-			int j = (int) (p.getY() / rad);
-			bgParticles[i][j] = null;
-		}
-		
-	}
 	
 	private static KnowledgeBase readKnowledgeBase() throws Exception {
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
