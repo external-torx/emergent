@@ -2,7 +2,6 @@
 
 package com.meleemistress.core;
 
-import com.meleemistress.core.Particle.ParticleType;
 
 /**
  * @author hparry
@@ -20,7 +19,7 @@ public class Background {
 		this.radius = radius;
 		for (int i = 0; i < numx; i++) {
 			for (int j = 0; j < numy; j++) {
-				particles[i][j] = new Particle(radius * i, radius * j, radius, ParticleType.STILL);
+				particles[i][j] = new StillParticle(radius * i, radius * j, radius);
 			}
 		}
 	}

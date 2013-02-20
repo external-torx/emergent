@@ -33,7 +33,7 @@ public class ParticleEngine extends PApplet {
 	private StatelessKnowledgeSession ksession;
 	private KnowledgeRuntimeLogger klogger;
 	private ArrayList<MovingParticle> movingParticles;
-	static final int rad = 5;
+	static final int rad = 40;
 	private static final int partsPerSide = DIMENSION/rad;
 	
 	private PImage img;
@@ -57,7 +57,7 @@ public class ParticleEngine extends PApplet {
             }
             
             
-            background = new Background(DIMENSION/rad, DIMENSION/rad, rad);
+            background = new Background(partsPerSide, partsPerSide, rad);
             
         } catch (Throwable t) {
             t.printStackTrace();

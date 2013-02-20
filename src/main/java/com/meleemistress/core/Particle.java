@@ -5,7 +5,7 @@ package com.meleemistress.core;
  * @author hparry
  *
  */
-public class Particle {
+public abstract class Particle {
 
 	private String name;
 	
@@ -16,18 +16,16 @@ public class Particle {
 	protected double x;
 	protected double y;
 	
-	protected ParticleType type;
+
 	
-	public Particle(double x, double y, int radius, ParticleType type) {
+	public Particle(double x, double y, int radius) {
 		this.x = x;
 		this.y = y;
 		this.radius = radius;
-		this.type = type;
 	}
 	
 	public Particle(String name) {
 		this.name = name;
-		this.type = ParticleType.STILL;
 	}
 
 	public String getName() {
@@ -65,13 +63,5 @@ public class Particle {
 		this.radius = radius;
 	}
 
-	public ParticleType getType() {
-		return this.type;
-	}
-	
-
-	public enum ParticleType {
-		MOVING, STILL
-	}
 
 }

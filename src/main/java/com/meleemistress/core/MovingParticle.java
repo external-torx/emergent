@@ -8,7 +8,6 @@ package com.meleemistress.core;
  *
  */
 
-//TODO remove this class, merge back into particle
 public class MovingParticle extends Particle {
 
 	//x,y velocities
@@ -17,7 +16,7 @@ public class MovingParticle extends Particle {
 	
 	public MovingParticle(String name) {
 		super(name);
-		this.type = ParticleType.MOVING;
+		generateStartingPositionAndVelocity();
 	}
 	
 	public double getXvel() {

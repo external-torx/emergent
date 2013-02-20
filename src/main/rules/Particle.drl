@@ -4,23 +4,12 @@ package Particle
 import com.meleemistress.core.Particle;
 import com.meleemistress.core.MovingParticle;
 import com.meleemistress.core.ParticleEngine;
-import com.meleemistress.core.Particle.ParticleType;
 import com.meleemistress.core.Background;
 
 
 
 
 //declare any global variables here
-
-
-
-//initialization: set position, velocity
-rule "initialize the particle"
-    when 
-        p : MovingParticle(xvel == 0 && yvel == 0)
-    then
-        p.generateStartingPositionAndVelocity();
-end
 
 
 
@@ -54,15 +43,6 @@ rule "update particle position"
         b.removeCollidingParticles(p.getX(), p.getY());
 end
 
-
-
-rule "detect collisions"
-    when
-        m: MovingParticle()
-        p: Particle(Math.abs(x - m.x) < 5, Math.abs(y - m.y) < 5, type == ParticleType.STILL)
-    then
-       // p.remove();
-end
 
 
 
