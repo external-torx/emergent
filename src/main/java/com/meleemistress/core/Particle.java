@@ -18,7 +18,7 @@ public abstract class Particle {
 	
 
 	
-	public Particle(double x, double y, int radius) {
+	Particle(double x, double y, int radius) {
 		this.x = x;
 		this.y = y;
 		this.radius = radius;

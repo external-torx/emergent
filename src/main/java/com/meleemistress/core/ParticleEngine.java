@@ -33,7 +33,7 @@ public class ParticleEngine extends PApplet {
 	private StatelessKnowledgeSession ksession;
 	private KnowledgeRuntimeLogger klogger;
 	private ArrayList<MovingParticle> movingParticles;
-	static final int rad = 40;
+	static final int rad = 10;
 	private static final int partsPerSide = DIMENSION/rad;
 	
 	private PImage img;
@@ -73,9 +73,10 @@ public class ParticleEngine extends PApplet {
         stuff.addAll(movingParticles);
         stuff.add(background);
         ksession.execute(stuff);
-        for (Particle[] ps : background.getParticles()) {
-        	for (Particle p : ps) {
+        for (StillParticle[] ps : background.getParticles()) {
+        	for (StillParticle p : ps) {
         		if (p != null) {
+        			fill(255,255,255,p.getAlpha());
         			rect(p.getX(), p.getY(), p.getRadius(), p.getRadius());
         		}
         	}
