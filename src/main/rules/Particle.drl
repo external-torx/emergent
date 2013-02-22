@@ -21,7 +21,8 @@ rule "bounce off a side wall"
         p : MovingParticle(x == ParticleEngine.DIMENSION || x == 0)
     then
         //if we've hit the boundary of the viewing window, invert the x velocity
-        p.setXvel(-p.getXvel());
+        //p.setXvel(-p.getXvel());
+        
 end
 
 rule "bounce off the floor or ceiling"
@@ -30,7 +31,7 @@ rule "bounce off the floor or ceiling"
         p : MovingParticle(y == ParticleEngine.DIMENSION || y == 0)
     then
         //if we've hit the boundary of the window, invert the y velocity
-        p.setYvel(-p.getYvel());
+        //p.setYvel(-p.getYvel());
 end
 
 rule "update particle position"
