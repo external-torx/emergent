@@ -1,5 +1,7 @@
 package com.meleemistress.core;
 
+import com.meleemistress.core.event.HitWallEvent;
+
 
 /**
  * A Particle with velocity
@@ -49,6 +51,12 @@ public class MovingParticle extends Particle {
 		//bounce off the sides of the viewing window
 		x = xvel > 0 ? Math.min(x + xvel, ParticleEngine.DIMENSION) : Math.max(0, x + xvel);
 		y = yvel > 0 ? Math.min(y + yvel, ParticleEngine.DIMENSION) : Math.max(0, y + yvel);
+	}
+	
+	public void fireWallEvent() {
+		HitWallEvent e = new HitWallEvent(this);
+		
+		ParticleEngine.getEventDispatcher().dispatch(e);
 	}
 
 }

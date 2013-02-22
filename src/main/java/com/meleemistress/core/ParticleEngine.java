@@ -19,6 +19,8 @@ import org.drools.runtime.StatelessKnowledgeSession;
 import processing.core.PApplet;
 import processing.core.PImage;
 
+import com.meleemistress.core.event.EventDispatcher;
+
 public class ParticleEngine extends PApplet {
 
 	/**
@@ -35,6 +37,7 @@ public class ParticleEngine extends PApplet {
 	private ArrayList<MovingParticle> movingParticles;
 	static final int rad = 10;
 	private static final int partsPerSide = DIMENSION/rad;
+	
 	
 	private PImage img;
 	
@@ -62,6 +65,7 @@ public class ParticleEngine extends PApplet {
         } catch (Throwable t) {
             t.printStackTrace();
         }
+		
 	}
 	
 	public void draw() {
@@ -106,5 +110,9 @@ public class ParticleEngine extends PApplet {
         return kbase;
     }
 
+	//TODO HPARRY this is such a bad idea. Fix it
+	public static EventDispatcher getEventDispatcher() {
+		return new EventDispatcher();
+	}
 
 }

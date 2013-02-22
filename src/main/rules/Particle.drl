@@ -9,30 +9,24 @@ import com.meleemistress.core.Background;
 
 
 
+
 //declare any global variables here
 
 
 
 //movement: update position
 
-rule "bounce off a side wall"
+rule "bounce off a wall"
     salience 1  //execute this before updating position
     when
-        p : MovingParticle(x == ParticleEngine.DIMENSION || x == 0)
+        p : MovingParticle(x == ParticleEngine.DIMENSION || x == 0
+        || y == ParticleEngine.DIMENSION || y == 0)
     then
-        //if we've hit the boundary of the viewing window, invert the x velocity
-        //p.setXvel(-p.getXvel());
+        //if we've hit the boundary of the viewing window, fire an event 
+        p.fireWallEvent();
         
 end
 
-rule "bounce off the floor or ceiling"
-    salience 1 //execute this before updating position
-    when
-        p : MovingParticle(y == ParticleEngine.DIMENSION || y == 0)
-    then
-        //if we've hit the boundary of the window, invert the y velocity
-        //p.setYvel(-p.getYvel());
-end
 
 rule "update particle position"
     when
