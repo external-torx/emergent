@@ -41,7 +41,7 @@ public class ChromatographEngine extends PApplet {
 	
 	private static final int NUM_PARTICLES = 800;
 	
-	private static final int ORIGIN = 20;
+	private static final int ORIGIN = 200;
 	
 	ArrayList<Particle> fastParticles; 
 	ArrayList<Particle> slowParticles;
@@ -55,20 +55,24 @@ public class ChromatographEngine extends PApplet {
 		for (int i = 0; i < NUM_PARTICLES; i ++) {
 			fastParticles.add(new Particle.Builder()
 							.type("moving")
-							.xpos(ORIGIN + Math.random())
-							.ypos(ORIGIN + Math.random())
-							.xvel(Math.random() * ((int) (Math.random() * 2) == 1 ? 1 : -1))
-							.yvel(Math.random() * ((int) (Math.random() * 2) == 1 ? 1 : -1))
+//							.xpos(ORIGIN + Math.random())
+//							.ypos(ORIGIN + Math.random())
+							.xpos(ORIGIN)
+							.ypos(ORIGIN )
+							.xvel((int)(Math.random() * 5) * ((int) (Math.random() * 2) == 1 ? 1 : -1))
+							.yvel((int)(Math.random() * 5) * ((int) (Math.random() * 2) == 1 ? 1 : -1))
 							.radius(1)
 							.color(new Color(0,0,0))
 							.build());
 			
 			slowParticles.add(new Particle.Builder()
 							.type("moving")
-							.xpos(ORIGIN + Math.random())
-							.ypos(ORIGIN + Math.random())
-							.xvel(Math.random() / 2 * ((int) (Math.random() * 2) == 1 ? 1 : -1))
-							.yvel(Math.random() / 2 * ((int) (Math.random() * 2) == 1 ? 1 : -1))
+//							.xpos(ORIGIN + Math.random())
+//							.ypos(ORIGIN + Math.random())
+							.xpos(ORIGIN)
+							.ypos(ORIGIN )
+							.xvel((int)(Math.random() * 5) / 2 * ((int) (Math.random() * 2) == 1 ? 1 : -1))
+							.yvel((int)(Math.random() * 5) / 2 * ((int) (Math.random() * 2) == 1 ? 1 : -1))
 							.radius(1)
 							.color(new Color(255, 0, 0))
 							.build());
