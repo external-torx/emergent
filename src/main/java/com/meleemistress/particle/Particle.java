@@ -36,7 +36,14 @@ public class Particle {
 	private int radius;
 	protected Color color;
 	//TODO add shape
-	//private string shape; 
+	//private string shape;
+	
+	//vector stuff
+	
+	//angle is in radians
+	private float angle;
+	
+	private double scale;
 
 	
 	private Particle(String type, 
@@ -48,7 +55,9 @@ public class Particle {
 					double yaccel,
 					int alpha, 
 					int radius, 
-					Color color) {
+					Color color,
+					float angle,
+					double scale) {
 		this.type = type;
 		this.x = x;
 		this.y = y;
@@ -59,6 +68,8 @@ public class Particle {
 		this.alpha = alpha;
 		this.radius = radius;
 		this.color = color;
+		this.angle = angle;
+		this.scale = scale;
 	}
 	
 	public Color getColor() {
@@ -131,10 +142,32 @@ public class Particle {
 		this.alpha = alpha;
 	}
 	
+	public float getAngle() {
+		return angle;
+	}
+
+	public void setAngle(float angle) {
+		this.angle = angle;
+	}
+
+	public double getScale() {
+		return scale;
+	}
+
+	public void setScale(double scale) {
+		this.scale = scale;
+	}
+
+	
 	public void updatePosition() {
 		//bounce off the sides of the viewing window
 		x = xvel > 0 ? Math.min(x + xvel, ParticleEngine.DIMENSION) : Math.max(0, x + xvel);
 		y = yvel > 0 ? Math.min(y + yvel, ParticleEngine.DIMENSION) : Math.max(0, y + yvel);
+	}
+	
+	public void updatePositionByVector(int time) {
+		x = Math.sin(angle) * scale * time + 200;
+		y = Math.cos(angle) * scale * time + 200;
 	}
 	
 	public void fireWallEvent() {
@@ -164,6 +197,10 @@ public class Particle {
 		//opacity
 		protected int alpha = 255;
 		
+		//vector stuff
+		private float angle;
+		private double scale;
+		
 		protected Color color;
 		
 		public Builder xpos(double x) {this.xpos = x; return this;}
@@ -176,9 +213,11 @@ public class Particle {
 		public Builder alpha(int alpha) {this.alpha = alpha; return this;}
 		public Builder radius(int rad) {this.radius = rad; return this;}
 		public Builder color(Color color) {this.color = color; return this;}
+		public Builder angle(float angle) {this.angle = angle; return this;}
+		public Builder scale(double scale) {this.scale = scale; return this;}
 		
 		public Particle build() {
-			return new Particle(type, xpos, ypos, xvel, yvel, xaccel, yaccel, alpha, radius, color);
+			return new Particle(type, xpos, ypos, xvel, yvel, xaccel, yaccel, alpha, radius, color, angle, scale);
 		}
 		
 	}

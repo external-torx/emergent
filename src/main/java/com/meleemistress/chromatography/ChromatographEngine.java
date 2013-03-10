@@ -43,6 +43,7 @@ public class ChromatographEngine extends PApplet {
 	
 	private static final int ORIGIN = 200;
 	
+	private int time;
 	ArrayList<Particle> fastParticles; 
 	ArrayList<Particle> slowParticles;
 	
@@ -59,8 +60,10 @@ public class ChromatographEngine extends PApplet {
 //							.ypos(ORIGIN + Math.random())
 							.xpos(ORIGIN)
 							.ypos(ORIGIN )
-							.xvel((int)(Math.random() * 5) * ((int) (Math.random() * 2) == 1 ? 1 : -1))
-							.yvel((int)(Math.random() * 5) * ((int) (Math.random() * 2) == 1 ? 1 : -1))
+//							.xvel((int)(Math.random() * 5) * ((int) (Math.random() * 2) == 1 ? 1 : -1))
+//							.yvel((int)(Math.random() * 5) * ((int) (Math.random() * 2) == 1 ? 1 : -1))
+							.angle(radians((float) (Math.random() * 360)))
+							.scale(Math.random())
 							.radius(1)
 							.color(new Color(0,0,0))
 							.build());
@@ -71,8 +74,10 @@ public class ChromatographEngine extends PApplet {
 //							.ypos(ORIGIN + Math.random())
 							.xpos(ORIGIN)
 							.ypos(ORIGIN )
-							.xvel((int)(Math.random() * 5) / 2 * ((int) (Math.random() * 2) == 1 ? 1 : -1))
-							.yvel((int)(Math.random() * 5) / 2 * ((int) (Math.random() * 2) == 1 ? 1 : -1))
+//							.xvel((int)(Math.random() * 5) / 2 * ((int) (Math.random() * 2) == 1 ? 1 : -1))
+//							.yvel((int)(Math.random() * 5) / 2 * ((int) (Math.random() * 2) == 1 ? 1 : -1))
+							.angle(radians((float) (Math.random() * 360)))
+							.scale(Math.random() / 2)
 							.radius(1)
 							.color(new Color(255, 0, 0))
 							.build());
@@ -88,9 +93,11 @@ public class ChromatographEngine extends PApplet {
         } catch (Throwable t) {
             t.printStackTrace();
         }
+		time = 0;
 	}
 	
 	public void draw() {
+		time++;
 		//need to redraw the background every time if we don't want trailing
         background(255);
         noStroke();
@@ -99,6 +106,7 @@ public class ChromatographEngine extends PApplet {
         Collection<Object> stuff = new LinkedList<Object>();
         stuff.addAll(fastParticles);
         stuff.addAll(slowParticles);
+        stuff.add(time);
         ksession.execute(stuff);
         
         

@@ -41,8 +41,9 @@ end */
 rule "update particle position without background"
 	when 
 		p : Particle(type == "moving" )
+		t : Integer()
 	then
-		p.updatePosition();
+		p.updatePositionByVector(t);
 end
 
 
