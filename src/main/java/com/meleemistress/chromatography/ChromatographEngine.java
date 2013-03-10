@@ -39,7 +39,10 @@ public class ChromatographEngine extends PApplet {
 	
 	public static final int DIMENSION = 400;
 	
-	private static final int NUM_PARTICLES = 800;
+	private static final int NUM_PARTICLES = 2000;
+	
+	private static final int scale = 20;
+	private static final int max_distance = 150;
 	
 	public static final int ORIGIN = 200;
 	
@@ -59,20 +62,20 @@ public class ChromatographEngine extends PApplet {
 							.xpos(ORIGIN + Math.random())
 							.ypos(ORIGIN + Math.random())
 							.angle(radians((float) (Math.random() * 360)))
-							.scale(Math.random())
+							.scale(Math.random() * scale)
 							.radius(1)
 							.color(new Color(0,0,0))
-							.build(), 30));
+							.build(), max_distance));
 			
 			slowParticles.add(new CParticle(new Particle.Builder()
 							.type("moving")
 							.xpos(ORIGIN + Math.random())
 							.ypos(ORIGIN + Math.random())
 							.angle(radians((float) (Math.random() * 360)))
-							.scale(Math.random() / 2)
+							.scale(Math.random() * scale / 2)
 							.radius(1)
 							.color(new Color(255, 0, 0))
-							.build(), 15));
+							.build(), max_distance - 5));
 						
 		}
 		

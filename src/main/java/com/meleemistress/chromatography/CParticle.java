@@ -31,9 +31,9 @@ public class CParticle {
 	public void updatePositionByVector(int time) {
 		//find distance from origin
 		
-		//sqrt((x2 - x1)^2 - (y2 - y1)^2)
+		//sqrt((x2 - x1)^2 + (y2 - y1)^2)
 		
-		double distance = Math.sqrt(Math.pow((p.getX() - ChromatographEngine.ORIGIN),2) - Math.pow((p.getY() - ChromatographEngine.ORIGIN),2));
+		double distance = Math.sqrt(Math.pow((p.getX() - ChromatographEngine.ORIGIN),2) + Math.pow((p.getY() - ChromatographEngine.ORIGIN),2));
 		if (distance < maxDistance) {
 			p.updatePositionByVector(time);
 		}
