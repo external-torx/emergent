@@ -10,7 +10,6 @@ public class MovingParticleEventHandler {
 	}
 	
 	public void handleEvent(HitWallEvent e) {
-		System.out.println("Handling event");
 		Particle p = e.getParticle();
 		
 		if (p.getX() >= ParticleEngine.DIMENSION || p.getX() <= 0) {

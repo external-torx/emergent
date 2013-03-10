@@ -17,7 +17,7 @@ import com.meleemistress.chromatography.CParticle;
 
 //movement: update position
 
-/*rule "bounce off a wall"
+rule "bounce off a wall"
     salience 1  //execute this before updating position
     when
         p : Particle(type == "moving" && (x == ParticleEngine.DIMENSION || x == 0
@@ -37,7 +37,7 @@ rule "update particle position"
     then
         p.updatePosition();
         b.removeCollidingParticles(p.getX(), p.getY());
-end */
+end 
 
 rule "update particle position without background"
 	when 
