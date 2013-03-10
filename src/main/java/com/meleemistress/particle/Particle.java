@@ -38,11 +38,10 @@ public class Particle {
 	//TODO add shape
 	//private string shape;
 	
-	//vector stuff
+	/***** vector stuff ****/
 	
 	//angle is in radians
-	private float angle;
-	
+	private float angle;	
 	private double scale;
 
 	

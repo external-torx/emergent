@@ -41,46 +41,38 @@ public class ChromatographEngine extends PApplet {
 	
 	private static final int NUM_PARTICLES = 800;
 	
-	private static final int ORIGIN = 200;
+	public static final int ORIGIN = 200;
 	
 	private int time;
-	ArrayList<Particle> fastParticles; 
-	ArrayList<Particle> slowParticles;
+	ArrayList<CParticle> fastParticles; 
+	ArrayList<CParticle> slowParticles;
 	
 	
 	public void setup() {
 		size(DIMENSION, DIMENSION);
 		//create particles
-		fastParticles = new ArrayList<Particle>(NUM_PARTICLES);
-		slowParticles = new ArrayList<Particle>(NUM_PARTICLES);
+		fastParticles = new ArrayList<CParticle>(NUM_PARTICLES);
+		slowParticles = new ArrayList<CParticle>(NUM_PARTICLES);
 		for (int i = 0; i < NUM_PARTICLES; i ++) {
-			fastParticles.add(new Particle.Builder()
+			fastParticles.add(new CParticle(new Particle.Builder()
 							.type("moving")
-//							.xpos(ORIGIN + Math.random())
-//							.ypos(ORIGIN + Math.random())
-							.xpos(ORIGIN)
-							.ypos(ORIGIN )
-//							.xvel((int)(Math.random() * 5) * ((int) (Math.random() * 2) == 1 ? 1 : -1))
-//							.yvel((int)(Math.random() * 5) * ((int) (Math.random() * 2) == 1 ? 1 : -1))
+							.xpos(ORIGIN + Math.random())
+							.ypos(ORIGIN + Math.random())
 							.angle(radians((float) (Math.random() * 360)))
 							.scale(Math.random())
 							.radius(1)
 							.color(new Color(0,0,0))
-							.build());
+							.build(), 30));
 			
-			slowParticles.add(new Particle.Builder()
+			slowParticles.add(new CParticle(new Particle.Builder()
 							.type("moving")
-//							.xpos(ORIGIN + Math.random())
-//							.ypos(ORIGIN + Math.random())
-							.xpos(ORIGIN)
-							.ypos(ORIGIN )
-//							.xvel((int)(Math.random() * 5) / 2 * ((int) (Math.random() * 2) == 1 ? 1 : -1))
-//							.yvel((int)(Math.random() * 5) / 2 * ((int) (Math.random() * 2) == 1 ? 1 : -1))
+							.xpos(ORIGIN + Math.random())
+							.ypos(ORIGIN + Math.random())
 							.angle(radians((float) (Math.random() * 360)))
 							.scale(Math.random() / 2)
 							.radius(1)
 							.color(new Color(255, 0, 0))
-							.build());
+							.build(), 15));
 						
 		}
 		
@@ -111,13 +103,14 @@ public class ChromatographEngine extends PApplet {
         
         
         for (int i = 0; i < NUM_PARTICLES; i++) {
-        	Particle p = fastParticles.get(i);
-        	fill(p.getColor().getR(), p.getColor().getB(), p.getColor().getG());
-    		ellipse(p.getX(), p.getY(), p.getRadius(), p.getRadius());
+        	CParticle p = fastParticles.get(i);
+        	//TODO this is so fucking ugly. Fix the CParticle data model
+        	fill(p.getP().getColor().getR(), p.getP().getColor().getB(), p.getP().getColor().getG());
+    		ellipse(p.getP().getX(), p.getP().getY(), p.getP().getRadius(), p.getP().getRadius());
     		
     		p = slowParticles.get(i);
-        	fill(p.getColor().getR(), p.getColor().getB(), p.getColor().getG());
-    		ellipse(p.getX(), p.getY(), p.getRadius(), p.getRadius());
+        	fill(p.getP().getColor().getR(), p.getP().getColor().getB(), p.getP().getColor().getG());
+    		ellipse(p.getP().getX(), p.getP().getY(), p.getP().getRadius(), p.getP().getRadius());
         }
 
 	}
