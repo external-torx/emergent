@@ -1,8 +1,7 @@
 //created on: Feb 16, 2013
 package Particle
 
-import com.meleemistress.core.Particle;
-import com.meleemistress.core.MovingParticle;
+import com.meleemistress.particle.Particle;
 import com.meleemistress.core.ParticleEngine;
 import com.meleemistress.core.Background;
 
@@ -19,8 +18,8 @@ import com.meleemistress.core.Background;
 rule "bounce off a wall"
     salience 1  //execute this before updating position
     when
-        p : MovingParticle(x == ParticleEngine.DIMENSION || x == 0
-        || y == ParticleEngine.DIMENSION || y == 0)
+        p : Particle(type == "moving" && (x == ParticleEngine.DIMENSION || x == 0
+        || y == ParticleEngine.DIMENSION || y == 0))
     then
         //if we've hit the boundary of the viewing window, fire an event 
         p.fireWallEvent();
@@ -31,7 +30,7 @@ end
 rule "update particle position"
     when
         //all positions get updated, all the time
-        p : MovingParticle()
+        p : Particle(type == "moving")
         b : Background()
     then
         p.updatePosition();

@@ -20,6 +20,7 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 import com.meleemistress.core.event.EventDispatcher;
+import com.meleemistress.particle.Particle;
 
 public class ParticleEngine extends PApplet {
 
@@ -34,7 +35,7 @@ public class ParticleEngine extends PApplet {
 	private  KnowledgeBase kbase;
 	private StatelessKnowledgeSession ksession;
 	private KnowledgeRuntimeLogger klogger;
-	private ArrayList<MovingParticle> movingParticles;
+	private ArrayList<Particle> movingParticles;
 	static final int rad = 10;
 	private static final int partsPerSide = DIMENSION/rad;
 	
@@ -53,9 +54,15 @@ public class ParticleEngine extends PApplet {
             ksession = kbase.newStatelessKnowledgeSession();
             klogger = KnowledgeRuntimeLoggerFactory.newFileLogger(ksession, "test");
             
-            movingParticles = new ArrayList<MovingParticle>(NUM_PARTICLES);
+            movingParticles = new ArrayList<Particle>(NUM_PARTICLES);
             for (int i = 0; i < NUM_PARTICLES; i++) {
-            	movingParticles.add(i, new MovingParticle("p" + i));
+            	movingParticles.add(i, new Particle.Builder().type("moving")
+            			.xpos(Math.random() * DIMENSION)
+            			.ypos(Math.random() * DIMENSION)
+            			.xvel(Math.random() * 5)
+            			.yvel(Math.random() * 5)
+            			.radius(10)
+            			.build());
             	
             }
             
@@ -77,8 +84,8 @@ public class ParticleEngine extends PApplet {
         stuff.addAll(movingParticles);
         stuff.add(background);
         ksession.execute(stuff);
-        for (StillParticle[] ps : background.getParticles()) {
-        	for (StillParticle p : ps) {
+        for (Particle[] ps : background.getParticles()) {
+        	for (Particle p : ps) {
         		if (p != null) {
         			fill(255,255,255,p.getAlpha());
         			rect(p.getX(), p.getY(), p.getRadius(), p.getRadius());
@@ -87,7 +94,7 @@ public class ParticleEngine extends PApplet {
         }
         
         for (int i = 0; i < NUM_PARTICLES; i++) {
-        	MovingParticle p = movingParticles.get(i);
+        	Particle p = movingParticles.get(i);
         	fill(100, 0, 100);
     		ellipse(p.getX(), p.getY(), p.getRadius(), p.getRadius());
         }

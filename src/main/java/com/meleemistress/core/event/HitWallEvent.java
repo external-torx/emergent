@@ -1,6 +1,6 @@
 package com.meleemistress.core.event;
 
-import com.meleemistress.core.MovingParticle;
+import com.meleemistress.particle.Particle;
 
 /**
  * 
@@ -9,13 +9,13 @@ import com.meleemistress.core.MovingParticle;
  */
 public class HitWallEvent {
 	
-	private MovingParticle particle;
+	private Particle particle;
 	
-	public HitWallEvent(MovingParticle p) {
-		this.particle = p;
+	public HitWallEvent(Particle particle2) {
+		this.particle = particle2;
 	}
 
-	public MovingParticle getParticle() {
+	public Particle getParticle() {
 		return particle;
 	}
 

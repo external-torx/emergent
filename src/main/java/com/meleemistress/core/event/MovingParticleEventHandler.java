@@ -1,7 +1,7 @@
 package com.meleemistress.core.event;
 
-import com.meleemistress.core.MovingParticle;
 import com.meleemistress.core.ParticleEngine;
+import com.meleemistress.particle.Particle;
 
 public class MovingParticleEventHandler {
 	
@@ -11,7 +11,7 @@ public class MovingParticleEventHandler {
 	
 	public void handleEvent(HitWallEvent e) {
 		System.out.println("Handling event");
-		MovingParticle p = e.getParticle();
+		Particle p = e.getParticle();
 		
 		if (p.getX() >= ParticleEngine.DIMENSION || p.getX() <= 0) {
 			p.setXvel(-p.getXvel());
