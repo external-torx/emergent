@@ -1,4 +1,4 @@
-package com.meleemistress.core;
+package com.meleemistress.chromatography;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,87 +17,94 @@ import org.drools.logger.KnowledgeRuntimeLoggerFactory;
 import org.drools.runtime.StatelessKnowledgeSession;
 
 import processing.core.PApplet;
-import processing.core.PImage;
 
 import com.meleemistress.core.event.EventDispatcher;
+import com.meleemistress.particle.Color;
 import com.meleemistress.particle.Particle;
 
-public class ParticleEngine extends PApplet {
-
+/**
+ * An engine to model chromatography and diffusion
+ * @author hparry
+ *
+ */
+public class ChromatographEngine extends PApplet {
+	
 	/**
-	 * test more commits
+	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final int NUM_PARTICLES = 10;
-	
-	public static final int DIMENSION = 800;
-	
 	private  KnowledgeBase kbase;
 	private StatelessKnowledgeSession ksession;
 	private KnowledgeRuntimeLogger klogger;
-	private ArrayList<Particle> movingParticles;
-	static final int rad = 10;
-	private static final int partsPerSide = DIMENSION/rad;
 	
+	public static final int DIMENSION = 400;
 	
-	private PImage img;
+	private static final int NUM_PARTICLES = 200;
 	
-	private Background background;
+	private static final int ORIGIN = 5;
+	
+	ArrayList<Particle> fastParticles; 
+	ArrayList<Particle> slowParticles;
+	
 	
 	public void setup() {
 		size(DIMENSION, DIMENSION);
-		background(255);
-		img = loadImage("particle_background.png");
+		//create particles
+		fastParticles = new ArrayList<Particle>(NUM_PARTICLES);
+		slowParticles = new ArrayList<Particle>(NUM_PARTICLES);
+		for (int i = 0; i < NUM_PARTICLES; i ++) {
+			fastParticles.add(new Particle.Builder()
+							.type("moving")
+							.xpos(ORIGIN + Math.random())
+							.ypos(ORIGIN + Math.random())
+							.xvel(Math.random())
+							.yvel(Math.random())
+							.radius(3)
+							.color(new Color(0,0,0))
+							.build());
+			
+			slowParticles.add(new Particle.Builder()
+							.type("moving")
+							.xpos(ORIGIN + Math.random())
+							.ypos(ORIGIN + Math.random())
+							.xvel(Math.random() / 2)
+							.yvel(Math.random() / 2)
+							.radius(3)
+							.color(new Color(50,50,50))
+							.build());
+						
+		}
+		
 		try {
             // load up the knowledge base
             kbase = readKnowledgeBase();
             ksession = kbase.newStatelessKnowledgeSession();
             klogger = KnowledgeRuntimeLoggerFactory.newFileLogger(ksession, "test");
             
-            movingParticles = new ArrayList<Particle>(NUM_PARTICLES);
-            for (int i = 0; i < NUM_PARTICLES; i++) {
-            	movingParticles.add(i, new Particle.Builder().type("moving")
-            			.xpos(Math.random() * DIMENSION)
-            			.ypos(Math.random() * DIMENSION)
-            			.xvel(Math.random() * 5)
-            			.yvel(Math.random() * 5)
-            			.radius(10)
-            			.build());
-            	
-            }
-            
-            
-            background = new Background(partsPerSide, partsPerSide, rad);
-            
         } catch (Throwable t) {
             t.printStackTrace();
         }
-		
 	}
 	
 	public void draw() {
 		//need to redraw the background every time if we don't want trailing
-        background(img);
+        background(255);
         noStroke();
         //TODO change this to use Color object
         fill(255);
         Collection<Object> stuff = new LinkedList<Object>();
-        stuff.addAll(movingParticles);
-        stuff.add(background);
+        stuff.addAll(fastParticles);
+        stuff.addAll(slowParticles);
         ksession.execute(stuff);
-        for (Particle[] ps : background.getParticles()) {
-        	for (Particle p : ps) {
-        		if (p != null) {
-        			fill(255,255,255,p.getAlpha());
-        			rect(p.getX(), p.getY(), p.getRadius(), p.getRadius());
-        		}
-        	}
-        }
+        
         
         for (int i = 0; i < NUM_PARTICLES; i++) {
-        	Particle p = movingParticles.get(i);
-        	//TODO change this to use Color object
-        	fill(100, 0, 100);
+        	Particle p = fastParticles.get(i);
+        	fill(p.getColor().getR(), p.getColor().getB(), p.getColor().getG());
+    		ellipse(p.getX(), p.getY(), p.getRadius(), p.getRadius());
+    		
+    		p = slowParticles.get(i);
+        	fill(p.getColor().getR(), p.getColor().getB(), p.getColor().getG());
     		ellipse(p.getX(), p.getY(), p.getRadius(), p.getRadius());
         }
 

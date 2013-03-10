@@ -4,6 +4,7 @@ package Particle
 import com.meleemistress.particle.Particle;
 import com.meleemistress.core.ParticleEngine;
 import com.meleemistress.core.Background;
+import com.meleemistress.chromatography.ChromatographEngine;
 
 
 
@@ -15,7 +16,7 @@ import com.meleemistress.core.Background;
 
 //movement: update position
 
-rule "bounce off a wall"
+/*rule "bounce off a wall"
     salience 1  //execute this before updating position
     when
         p : Particle(type == "moving" && (x == ParticleEngine.DIMENSION || x == 0
@@ -35,7 +36,16 @@ rule "update particle position"
     then
         p.updatePosition();
         b.removeCollidingParticles(p.getX(), p.getY());
+end */
+
+rule "update particle position without background"
+	when 
+		p : Particle(type == "moving" && (x < ChromatographEngine.DIMENSION && y < ChromatographEngine.DIMENSION))
+	then
+		p.updatePosition();
 end
+
+
 
 
 

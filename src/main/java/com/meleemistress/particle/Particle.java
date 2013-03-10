@@ -175,6 +175,7 @@ public class Particle {
 		public Builder yaccel(double yaccel) {this.yaccel = yaccel; return this;}
 		public Builder alpha(int alpha) {this.alpha = alpha; return this;}
 		public Builder radius(int rad) {this.radius = rad; return this;}
+		public Builder color(Color color) {this.color = color; return this;}
 		
 		public Particle build() {
 			return new Particle(type, xpos, ypos, xvel, yvel, xaccel, yaccel, alpha, radius, color);
