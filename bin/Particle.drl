@@ -40,7 +40,7 @@ end */
 
 rule "update particle position without background"
 	when 
-		p : Particle(type == "moving" && (x < ChromatographEngine.DIMENSION && y < ChromatographEngine.DIMENSION))
+		p : Particle(type == "moving" )
 	then
 		p.updatePosition();
 end

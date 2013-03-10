@@ -39,9 +39,9 @@ public class ChromatographEngine extends PApplet {
 	
 	public static final int DIMENSION = 400;
 	
-	private static final int NUM_PARTICLES = 200;
+	private static final int NUM_PARTICLES = 800;
 	
-	private static final int ORIGIN = 5;
+	private static final int ORIGIN = 20;
 	
 	ArrayList<Particle> fastParticles; 
 	ArrayList<Particle> slowParticles;
@@ -57,9 +57,9 @@ public class ChromatographEngine extends PApplet {
 							.type("moving")
 							.xpos(ORIGIN + Math.random())
 							.ypos(ORIGIN + Math.random())
-							.xvel(Math.random())
-							.yvel(Math.random())
-							.radius(3)
+							.xvel(Math.random() * ((int) (Math.random() * 2) == 1 ? 1 : -1))
+							.yvel(Math.random() * ((int) (Math.random() * 2) == 1 ? 1 : -1))
+							.radius(1)
 							.color(new Color(0,0,0))
 							.build());
 			
@@ -67,10 +67,10 @@ public class ChromatographEngine extends PApplet {
 							.type("moving")
 							.xpos(ORIGIN + Math.random())
 							.ypos(ORIGIN + Math.random())
-							.xvel(Math.random() / 2)
-							.yvel(Math.random() / 2)
-							.radius(3)
-							.color(new Color(50,50,50))
+							.xvel(Math.random() / 2 * ((int) (Math.random() * 2) == 1 ? 1 : -1))
+							.yvel(Math.random() / 2 * ((int) (Math.random() * 2) == 1 ? 1 : -1))
+							.radius(1)
+							.color(new Color(255, 0, 0))
 							.build());
 						
 		}
