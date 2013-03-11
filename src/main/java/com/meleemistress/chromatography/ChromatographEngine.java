@@ -37,45 +37,37 @@ public class ChromatographEngine extends PApplet {
 	private StatelessKnowledgeSession ksession;
 	private KnowledgeRuntimeLogger klogger;
 	
-	public static final int DIMENSION = 400;
+	private Universe universe;
 	
-	private static final int NUM_PARTICLES = 2000;
-	
-	private static final int scale = 20;
-	private static final int max_distance = 150;
-	
-	public static final int ORIGIN = 200;
-	
-	private int time;
 	ArrayList<CParticle> fastParticles; 
 	ArrayList<CParticle> slowParticles;
 	
 	
 	public void setup() {
-		size(DIMENSION, DIMENSION);
+		size(Universe.DIMENSION, Universe.DIMENSION);
 		//create particles
-		fastParticles = new ArrayList<CParticle>(NUM_PARTICLES);
-		slowParticles = new ArrayList<CParticle>(NUM_PARTICLES);
-		for (int i = 0; i < NUM_PARTICLES; i ++) {
+		fastParticles = new ArrayList<CParticle>(Universe.NUM_PARTICLES);
+		slowParticles = new ArrayList<CParticle>(Universe.NUM_PARTICLES);
+		for (int i = 0; i < Universe.NUM_PARTICLES; i ++) {
 			fastParticles.add(new CParticle(new Particle.Builder()
 							.type("moving")
-							.xpos(ORIGIN + Math.random())
-							.ypos(ORIGIN + Math.random())
+							.xpos(Universe.ORIGIN + Math.random())
+							.ypos(Universe.ORIGIN + Math.random())
 							.angle(radians((float) (Math.random() * 360)))
-							.scale(Math.random() * scale)
+							.scale(Math.random() * Universe.SCALE)
 							.radius(1)
 							.color(new Color(0,0,0))
-							.build(), max_distance));
+							.build(), Universe.MAX_DISTANCE));
 			
 			slowParticles.add(new CParticle(new Particle.Builder()
 							.type("moving")
-							.xpos(ORIGIN + Math.random())
-							.ypos(ORIGIN + Math.random())
+							.xpos(Universe.ORIGIN + Math.random())
+							.ypos(Universe.ORIGIN + Math.random())
 							.angle(radians((float) (Math.random() * 360)))
-							.scale(Math.random() * scale / 2)
+							.scale(Math.random() * Universe.SCALE / 2)
 							.radius(1)
 							.color(new Color(255, 0, 0))
-							.build(), max_distance - 5));
+							.build(), Universe.MAX_DISTANCE - 5));
 						
 		}
 		
@@ -88,11 +80,11 @@ public class ChromatographEngine extends PApplet {
         } catch (Throwable t) {
             t.printStackTrace();
         }
-		time = 0;
+		universe = new Universe();
 	}
 	
 	public void draw() {
-		time++;
+		universe.incrementTime();
 		//need to redraw the background every time if we don't want trailing
         background(255);
         noStroke();
@@ -101,11 +93,11 @@ public class ChromatographEngine extends PApplet {
         Collection<Object> stuff = new LinkedList<Object>();
         stuff.addAll(fastParticles);
         stuff.addAll(slowParticles);
-        stuff.add(time);
+        stuff.add(universe.getTime());
         ksession.execute(stuff);
         
         
-        for (int i = 0; i < NUM_PARTICLES; i++) {
+        for (int i = 0; i < Universe.NUM_PARTICLES; i++) {
         	CParticle p = fastParticles.get(i);
         	//TODO this is so fucking ugly. Fix the CParticle data model
         	fill(p.getP().getColor().getR(), p.getP().getColor().getB(), p.getP().getColor().getG());

@@ -39,6 +39,8 @@ rule "update particle position"
         b.removeCollidingParticles(p.getX(), p.getY());
 end 
 
+
+//this should set velocities, accelerations to 0 if too far away from the origin
 rule "update particle position without background"
 	when 
 		p : CParticle()
