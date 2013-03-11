@@ -32,7 +32,7 @@ public class ParticleEngine extends PApplet {
 	
 	public static final int DIMENSION = 800;
 	
-	private  KnowledgeBase kbase;
+	private  KnowledgeBase kbase;	
 	private StatelessKnowledgeSession ksession;
 	private KnowledgeRuntimeLogger klogger;
 	private ArrayList<Particle> movingParticles;
