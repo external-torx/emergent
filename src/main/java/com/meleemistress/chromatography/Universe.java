@@ -1,5 +1,7 @@
 package com.meleemistress.chromatography;
 
+import com.meleemistress.particle.Particle;
+
 public class Universe {
 	
 	public static final int ORIGIN = 200;
@@ -23,6 +25,17 @@ public class Universe {
 	
 	public int getTime() {
 		return time;
+	}
+	
+	//if we're too far from the origin, set velocity
+	//and acceleration to zero
+	//TODO I think this should technically be part of the rule system
+	public void checkForRangeBoundaries(Particle p) {
+		double distance = Math.sqrt(Math.pow((p.getX() - Universe.ORIGIN),2) + Math.pow((p.getY() - Universe.ORIGIN),2));
+		if (distance >= MAX_DISTANCE) {
+			p.setXvel(0);
+			p.setYvel(0);
+		}
 	}
 	
 

@@ -5,7 +5,7 @@ import com.meleemistress.particle.Particle;
 import com.meleemistress.core.ParticleEngine;
 import com.meleemistress.core.Background;
 import com.meleemistress.chromatography.ChromatographEngine;
-import com.meleemistress.chromatography.CParticle;
+import com.meleemistress.chromatography.Universe;
 
 
 
@@ -43,9 +43,11 @@ end
 //this should set velocities, accelerations to 0 if too far away from the origin
 rule "update particle position without background"
 	when 
-		p : CParticle()
+		p : Particle()
 		t : Integer()
+		u : Universe()
 	then
+		u.checkForRangeBoundaries(p);
 		p.updatePositionByVector(t);
 end
 

@@ -39,17 +39,17 @@ public class ChromatographEngine extends PApplet {
 	
 	private Universe universe;
 	
-	ArrayList<CParticle> fastParticles; 
-	ArrayList<CParticle> slowParticles;
+	ArrayList<Particle> fastParticles; 
+	ArrayList<Particle> slowParticles;
 	
 	
 	public void setup() {
 		size(Universe.DIMENSION, Universe.DIMENSION);
 		//create particles
-		fastParticles = new ArrayList<CParticle>(Universe.NUM_PARTICLES);
-		slowParticles = new ArrayList<CParticle>(Universe.NUM_PARTICLES);
+		fastParticles = new ArrayList<Particle>(Universe.NUM_PARTICLES);
+		slowParticles = new ArrayList<Particle>(Universe.NUM_PARTICLES);
 		for (int i = 0; i < Universe.NUM_PARTICLES; i ++) {
-			fastParticles.add(new CParticle(new Particle.Builder()
+			fastParticles.add(new Particle.Builder()
 							.type("moving")
 							.xpos(Universe.ORIGIN + Math.random())
 							.ypos(Universe.ORIGIN + Math.random())
@@ -57,9 +57,9 @@ public class ChromatographEngine extends PApplet {
 							.scale(Math.random() * Universe.SCALE)
 							.radius(1)
 							.color(new Color(0,0,0))
-							.build(), Universe.MAX_DISTANCE));
+							.build());
 			
-			slowParticles.add(new CParticle(new Particle.Builder()
+			slowParticles.add(new Particle.Builder()
 							.type("moving")
 							.xpos(Universe.ORIGIN + Math.random())
 							.ypos(Universe.ORIGIN + Math.random())
@@ -67,7 +67,7 @@ public class ChromatographEngine extends PApplet {
 							.scale(Math.random() * Universe.SCALE / 2)
 							.radius(1)
 							.color(new Color(255, 0, 0))
-							.build(), Universe.MAX_DISTANCE - 5));
+							.build());
 						
 		}
 		
@@ -88,24 +88,25 @@ public class ChromatographEngine extends PApplet {
 		//need to redraw the background every time if we don't want trailing
         background(255);
         noStroke();
-        //TODO change this to use Color object
+
         fill(255);
         Collection<Object> stuff = new LinkedList<Object>();
         stuff.addAll(fastParticles);
         stuff.addAll(slowParticles);
         stuff.add(universe.getTime());
+        stuff.add(universe);
         ksession.execute(stuff);
         
         
         for (int i = 0; i < Universe.NUM_PARTICLES; i++) {
-        	CParticle p = fastParticles.get(i);
-        	//TODO this is so fucking ugly. Fix the CParticle data model
-        	fill(p.getP().getColor().getR(), p.getP().getColor().getB(), p.getP().getColor().getG());
-    		ellipse(p.getP().getX(), p.getP().getY(), p.getP().getRadius(), p.getP().getRadius());
+        	Particle p = fastParticles.get(i);
+        	
+        	fill(p.getColor().getR(), p.getColor().getB(), p.getColor().getG());
+    		ellipse(p.getX(), p.getY(), p.getRadius(), p.getRadius());
     		
     		p = slowParticles.get(i);
-        	fill(p.getP().getColor().getR(), p.getP().getColor().getB(), p.getP().getColor().getG());
-    		ellipse(p.getP().getX(), p.getP().getY(), p.getP().getRadius(), p.getP().getRadius());
+        	fill(p.getColor().getR(), p.getColor().getB(), p.getColor().getG());
+    		ellipse(p.getX(), p.getY(), p.getRadius(), p.getRadius());
         }
 
 	}
