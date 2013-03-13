@@ -93,7 +93,6 @@ public class ChromatographEngine extends PApplet {
         Collection<Object> stuff = new LinkedList<Object>();
         stuff.addAll(fastParticles);
         stuff.addAll(slowParticles);
-        stuff.add(universe.getTime());
         stuff.add(universe);
         ksession.execute(stuff);
         

@@ -44,11 +44,10 @@ end
 rule "update particle position without background"
 	when 
 		p : Particle()
-		t : Integer()
 		u : Universe()
 	then
 		u.checkForRangeBoundaries(p);
-		p.updatePositionByVector(t);
+		p.updatePositionByVector();
 end
 
 
