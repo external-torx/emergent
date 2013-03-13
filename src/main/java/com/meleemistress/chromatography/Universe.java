@@ -32,9 +32,13 @@ public class Universe {
 	//TODO I think this should technically be part of the rule system
 	public void checkForRangeBoundaries(Particle p) {
 		double distance = Math.sqrt(Math.pow((p.getX() - Universe.ORIGIN),2) + Math.pow((p.getY() - Universe.ORIGIN),2));
+		
+		//if we've hit max distance, the particle needs to stop moving.
+		//this doesn't actually do that.
+		//probably needs prime mover
 		if (distance >= MAX_DISTANCE) {
-			p.setXvel(0);
-			p.setYvel(0);
+			//no no no need to stop time
+			p.setScale(0);
 		}
 	}
 	

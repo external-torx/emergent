@@ -164,7 +164,9 @@ public class Particle {
 		y = yvel > 0 ? Math.min(y + yvel, ParticleEngine.DIMENSION) : Math.max(0, y + yvel);
 	}
 	
+	//TODO this shouldn't reference the origin at all.
 	public void updatePositionByVector(int time) {
+		//origin is at 200,200 for this first project. Fix it.
 		x = Math.sin(angle) * scale * time + 200;
 		y = Math.cos(angle) * scale * time + 200;
 	}
