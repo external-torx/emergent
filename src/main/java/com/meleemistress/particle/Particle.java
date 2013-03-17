@@ -157,8 +157,10 @@ public class Particle {
 		this.scale = scale;
 	}
 
-	
+	//TODO add acceleration
 	public void updatePosition() {
+		xvel += xaccel;
+		yvel += yaccel;
 		//bounce off the sides of the viewing window
 		x = xvel > 0 ? Math.min(x + xvel, ParticleEngine.DIMENSION) : Math.max(0, x + xvel);
 		y = yvel > 0 ? Math.min(y + yvel, ParticleEngine.DIMENSION) : Math.max(0, y + yvel);
